@@ -19,7 +19,9 @@ export const signup = async (req, res) => {
 		if (existingUsername) {
 			return res.status(400).json({ message: "Username already exists" });
 		}
-
+		if(User.email != User.username){
+			return res.status(400).json({ message: "Enter same emails" });
+		}
 		if (password.length < 8) {
 			return res.status(400).json({ message: "Password must be at least 8 characters" });
 		}
